@@ -1,0 +1,61 @@
+.grid2Or3{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    column-gap:15px;
+    width:100%;
+}
+.grid2Or3Item{
+    grid-column: 1 / span 2;
+  }
+.flexEndButton{
+    width:100%;
+}
+
+.successText{
+    font-size:20px;
+}
+.successContent{
+    font-size:14px;
+}
+
+
+@media only screen and (min-width: 780px) {
+    .names{
+        display:flex;
+
+    }
+    .successText{
+        font-size:24px;
+    }
+    .successContent{
+        font-size:16px;
+    }
+    
+  .mr10{
+      margin-right:15px;
+  }
+  .grid2Or3{
+    grid-template-columns:repeat(3,1fr);
+  }
+  .grid2{
+    grid-template-columns:repeat(2,1fr);
+    display:grid;
+    column-gap:15px;
+  }
+
+  .contestedBefore{
+      display:flex;
+      align-items:center;
+
+  }
+  .flexEnd{
+      display:flex;
+      justify-content:flex-end;
+  }
+  .flexEndButton{
+      width:fit-content;
+  }
+ 
+ 
+  }
+

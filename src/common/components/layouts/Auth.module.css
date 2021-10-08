@@ -1,0 +1,25 @@
+
+.imageWrapper{
+  display:none;
+}
+
+.layout{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+@media only screen and (min-width: 780px) {
+  .imageWrapper{
+    display:block;
+  }
+.header{
+  font-size:48px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns: 0.7fr 1fr;
+}
+
+}
+
