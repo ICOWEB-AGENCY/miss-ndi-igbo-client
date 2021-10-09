@@ -29,7 +29,7 @@ try {
 
 const ContestantProfileModal=({user,setSelectedUser})=>{
     return (
-         <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0,0,0,0.2)",position:"fixed",zIndex:10,top:0,justifyContent:"center",display:"flex",alignItems:"center"}}>
+         <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0,0,0,0.6)",position:"fixed",zIndex:10,top:0,justifyContent:"center",display:"flex",alignItems:"center"}}>
         <div style={{borderRadius:24,backgroundColor:"#fff",padding:20,margin:20,position:"relative"}}>
         <div 
         style={{position:"absolute",right:20,cursor:"pointer"}}>
