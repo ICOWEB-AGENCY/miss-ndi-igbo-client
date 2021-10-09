@@ -64,7 +64,7 @@ onClick={uploadPhoto}
 {/* <div style={{width:"100%",overFlow:"hidden",width:"fit-content"}}> */}
 <HorizontalScroll>
 
-<ul style={{marginBottom:40,display:"flex",width:"100%"}}>
+<ul style={{padding:20,marginBottom:40,display:"flex",width:"100%"}}>
 {
 [1].map(image=>{
     return (

@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import InputGroup from '../common/components/form/Inputgroup'
+import InputGroup from '../common/components/form/InputGroup'
 import Error from  '../common/components/Error'
 import {putData} from '../utils/services/putServices'
 import cookie from "js-cookie"
