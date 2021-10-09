@@ -107,7 +107,9 @@ export default function Contestants({contestants=[],error}) {
         className={styles.header}
         >
         <div>
-        <img src="./images/logo-big.png" />
+       <Link  href="/">
+ <img src="./images/logo-big.png"  style={{cursor:"pointer"}} />
+       </Link>
         </div>
      <div style={{display:"flex",alignItems:"center",position:"relative"}}>
  {

@@ -40,7 +40,7 @@ export default   function Profile({user={}}) {
 
         <div style={{marginRight:450}}>
         <Link href="/contestants" >
-<img src="./images/logo.png" style={{cursor:"pointer"}} />
+<img src="./images/logo-big.png" style={{cursor:"pointer"}} />
 </Link>
         </div>
         <ul style={{display:"flex"}}>
@@ -88,6 +88,7 @@ user={user}
 {
     active==="Account Settings" &&<Settings
 user={user}
+setActive={setActive}
  />
 }
 {
