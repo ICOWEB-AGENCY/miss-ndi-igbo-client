@@ -1,1 +1,1 @@
-export default process.env.NODE_ENV === "production" ? "https://ada-ndi-igbo.herokuapp.com/" : "http://localhost:5000"
+export default process.env.NODE_ENV === "production" ? "https://ada-ndi-igbo.herokuapp.com" : "http://localhost:5000"
