@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from './Auth.module.css'
 import HomeMenuCards from '../home/HomeMenuTag'
 import PageHeader from '../headers/PageHeader'
-import Link from 'next/Link'
+import Link from 'next/link'
 
 export default function AuthLayout({children}) {
   

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Index.module.css'
 import HomeMenuCards from '../common/components/home/HomeMenuTag'
 import PageHeader from '../common/components/headers/PageHeader'
-import Link from 'next/Link'
+import Link from 'next/link'
 
 export default function Home() {
   return (
