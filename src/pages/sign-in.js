@@ -39,7 +39,7 @@ cookie.set("refreshToken",data.refreshToken)
       
     }
     return (
-        <main style={{backgroundColor:"rgba(255, 253, 251, 1)",minHeight:"100vh",padding:16}}>
+        <main>
 
         <div style={{margin:"25px 0",display:"flex",justifyContent:"space-between",position:"relative"}}>
         

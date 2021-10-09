@@ -102,7 +102,7 @@ export default function Contestants({contestants=[],error}) {
     const [searchOpen,setSearchOpen]=useState(false)
     return (
         <>
-        <header style={{padding:"16px 94px",backgroundColor:"rgba(238, 219, 201, 1)",marginBottom:40,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <header style={{padding:"16px 94px",backgroundColor:"rgba(238, 219, 201, 1)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <div>
         <img src="./images/logo-big.png" />
         </div>
@@ -130,7 +130,7 @@ placeholder="Search by contestant name"
         />
 }
      
-        <div>
+        <div style={{paddingTop:40}}>
        <header>
        <h1 style={{color:"rgba(159, 135, 114, 1)",fontSize:16,textAlign:"center",fontWeight:"600",marginBottom:16}}>
 VOTE YOU FAVOURITE CONTESTANT
