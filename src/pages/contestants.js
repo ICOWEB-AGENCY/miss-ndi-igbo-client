@@ -3,6 +3,7 @@ import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
 import {getData} from '../utils/services/getServices'
 import constants from '../configs/constants'
+import styles from '../styles/Contestants.module.css'
 
 
 const log = console.log
@@ -102,18 +103,24 @@ export default function Contestants({contestants=[],error}) {
     const [searchOpen,setSearchOpen]=useState(false)
     return (
         <>
-        <header style={{padding:"16px 94px",backgroundColor:"rgba(238, 219, 201, 1)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <header style={{backgroundColor:"rgba(238, 219, 201, 1)",display:"flex",justifyContent:"space-between",alignItems:"center"}}
+        className={styles.header}
+        >
         <div>
         <img src="./images/logo-big.png" />
         </div>
-     <div style={{display:"flex",alignItems:"center"}}>
+     <div style={{display:"flex",alignItems:"center",position:"relative"}}>
  {
-     searchOpen &&     <form>
+     false &&   <>  <form>
 <input 
-style={{padding:10,fontSize:20,backgroundColor:"transparent",border:"none",fontStyle:"italic",width:270}}
+style={{padding:10,backgroundColor:"transparent",border:"none",fontStyle:"italic"}}
+
+className={styles.searchBar}
 placeholder="Search by contestant name"
  />
      </form>
+
+</>
  }
         <img
         onClick={()=>setSearchOpen(!searchOpen)}
@@ -159,9 +166,10 @@ Stage{" "}
 
 <ul style={{display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
 {
-    contestants.map(contestant=>        <Contestant
+    contestants.map((contestant,idx)=>        <Contestant
     contestant={contestant}
     setSelectedUser={setSelectedUser}
+    idx={idx}
     />)
 }
 
@@ -192,7 +200,7 @@ const InputGroup=({icon="user.svg",extraStyle,...rest})=>{
     )
 }
 
-const Contestant=({contestant,setSelectedUser})=>{
+const Contestant=({contestant,setSelectedUser,idx})=>{
         return (
                 <li style={{border:"1px solid rgba(224, 202, 182, 1)",borderRadius:6,margin:"0 24px 40px 24px",position:"relative"}}>
     <div style={{position:"absolute",right:20,top:20}}>
@@ -226,7 +234,7 @@ const Contestant=({contestant,setSelectedUser})=>{
         </div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <span>
-Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> 1</span>
+Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {idx*1+1}</span>
         </span>
         <button style={{padding:"8px 34px",color:"#fff",backgroundColor:"rgba(58, 33, 16, 1)",borderRadius:4,border:"1px solid rgba(58, 33, 16, 1)",fontWeight:"700"}}>
         Vote
