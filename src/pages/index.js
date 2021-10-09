@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
  
-<>
+<main style={{marginTop:60}}>
          <PageHeader 
    />
   <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap"}} >
@@ -42,7 +42,7 @@ export default function Home() {
            </Link>
          </div>
   
-    </>
+    </main>
   )
 }
 

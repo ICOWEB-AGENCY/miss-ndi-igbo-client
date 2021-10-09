@@ -5,6 +5,7 @@ import InputGroup from '../common/components/form/InputGroup'
 import {postData} from '../utils/services/postServices'
 import styles from '../styles/Create-account.module.css'
 import Error from  '../common/components/Error'
+import CreateNav from  '../common/components/nav/CreateNav'
 import cookie from "js-cookie"
 import {useRouter} from 'next/router'
 import constants from '../configs/constants'
@@ -49,7 +50,9 @@ export default function CreateAccountBio() {
            }
        
        
- <img src="./images/cancel-white.svg" />
+<Link href="/">
+ <img src="./images/cancel-white.svg"  style={{cursor:"pointer"}} />
+</Link>
         </div>
          <PageHeader 
    />
@@ -110,18 +113,9 @@ export default function CreateAccountBio() {
                     />
 
 
-                    <div style={{display:"flex",justifyContent:"center"}}>
-                 
-
-                    <button
-                    onClick={save}
-                     style={{width:55,height:55,backgroundColor:"rgba(159, 135, 114, 1)",borderRadius:100,display:"flex",justifyContent:"center",alignItems:"center",border:"1px solid rgba(159, 135, 114, 1)"}}>
-                    <img src="./images/proceed-arrow-white.svg" />
-
-                    </button>
-                   
-
-                    </div>
+                   <CreateNav
+                   save={save}
+                    />
               
 
                 </div>
@@ -136,5 +130,7 @@ export default function CreateAccountBio() {
         </main>
     )
 }
+
+
 
 

@@ -1,0 +1,24 @@
+
+.progressWrapper{
+    justify-content:center;
+    flex-direction:column;
+}
+
+.progressBar{
+    width:95%;
+    margin-bottom:60px;
+}
+
+
+@media only screen and (min-width: 780px) {
+    .progressWrapper{
+        justify-content:space-between;
+        flex-direction:row;
+    }
+
+    .progressBar{
+        width:50%;
+        margin-bottom:0px;
+    }
+
+}

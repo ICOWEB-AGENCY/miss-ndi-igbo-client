@@ -7,6 +7,7 @@ import constants from '../configs/constants'
 import {putData} from '../utils/services/putServices'
 import {useRouter} from 'next/router'
 import styles from '../styles/Create-account.module.css'
+import CreateNav from  '../common/components/nav/CreateNav'
 const log= console.log
 
 export default function CreateAccountBio() {
@@ -103,19 +104,10 @@ PARENT
            
 
 
-           
-                    <div style={{display:"flex",justifyContent:"center"}}>
-                 
-
-                    <button
-                    onClick={save}
-                     style={{width:55,height:55,backgroundColor:"rgba(159, 135, 114, 1)",borderRadius:100,display:"flex",justifyContent:"center",alignItems:"center",border:"1px solid rgba(159, 135, 114, 1)"}}>
-                    <img src="./images/proceed-arrow-white.svg" />
-
-                    </button>
-                   
-
-                    </div>
+               <CreateNav
+                   save={save}
+                    />
+                    
               
 
                 </div>

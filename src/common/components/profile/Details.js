@@ -20,12 +20,15 @@ export default   function Profile({user={}}) {
     const [fathersName,setFathersName]=useState(user.fathersName)
         const [mothersName,setMothersName]=useState(user.mothersName)
       const [age,setAge]=useState(user.age)
+       const [eyeColor,setEyeColor]=useState(user.eyeColor)
+        const [hairColor,setHairColor]=useState(user.hairColor)
         const [address,setAddress]=useState(user.address)
            const [stateOfOrigin,setStateOfOrigin]=useState(user.stateOfOrigin)
                const [futurePlans,setFuturePlans]=useState(user.futurePlans)
              const [LGA,setLGA]=useState(user.LGA)
              const [hobbies,setHobbies]=useState(user.hobbies)
                const [schoolAttending,setSchoolAttending]=useState(user.schoolAttending)
+                  const [schoolAttended,setSchoolAttended]=useState(user.schoolAttended)
    
     return (
         <main style={{minHeight:"100vh",paddingBottom:30,margin:23}}>
@@ -58,14 +61,14 @@ export default   function Profile({user={}}) {
 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",columnGap:20}}>
                <ProfileField
        title="Hair Color"
-         value={age}
-       onChange={(e)=>setAge(e.target.value)}
+         value={hairColor}
+       onChange={(e)=>setHairColor(e.target.value)}
         />
 
                <ProfileField
        title="Eye Color"
-         value={age}
-       onChange={(e)=>setAge(e.target.value)}
+         value={eyeColor}
+       onChange={(e)=>setEyeColor(e.target.value)}
         />
       </div>
                  <ProfileField
@@ -123,6 +126,8 @@ export default   function Profile({user={}}) {
         </div>
                                   <ProfileField
        title="School Attended"
+             value={schoolAttended}
+       onChange={(e)=>setSchoolAttended(e.target.value)}
         />
           <div className={styles.grid2}>
                                          <ProfileField

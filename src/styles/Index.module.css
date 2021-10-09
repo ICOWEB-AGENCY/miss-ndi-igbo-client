@@ -8,6 +8,10 @@
   align-items:center;
   justify-content:center;
 }
+
+.autoMt{
+  
+}
 @media only screen and (min-width: 780px) {
   .imageWrapper{
     display:block;

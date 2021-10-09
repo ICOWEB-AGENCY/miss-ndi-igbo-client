@@ -29,7 +29,7 @@ export default function AuthLayout({children}) {
         />
    </div>
    
-    <div style={{padding:"0 20px"}}>
+    <div className={styles.autPadding}>
   {/* <PageHeader 
    /> */}
 
