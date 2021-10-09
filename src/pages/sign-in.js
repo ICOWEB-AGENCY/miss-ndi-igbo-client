@@ -50,8 +50,16 @@ cookie.set("refreshToken",data.refreshToken)
                 />
            }
        
-        <img src="./images/back-white.svg" />
- <img src="./images/cancel-white.svg" />
+      <img 
+ src="./images/back-white.svg" 
+ style={{cursor:"pointer"}}
+ onClick={()=>router.back()}
+  />
+ <img 
+ src="./images/cancel-white.svg" 
+ style={{cursor:"pointer"}}
+ onClick={()=>router.back()}
+  />
         </div>
            <PageHeader
          title="Sign In"

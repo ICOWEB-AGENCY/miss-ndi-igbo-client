@@ -22,7 +22,7 @@ export default function CreateAccountBio() {
 
           const save= async(e)=>{
             e.preventDefault()
-            const body = {eduQualification,schoolAttended,activities,hobbies,futurePlans,contestedBefore}
+            const body = {eduQualification,schoolAttended,activities:activities.split(",").map(item=>item.trim()),hobbies:hobbies.split(",").map(item=>item.trim()),futurePlans,contestedBefore}
             console.log(body)
            const _id= cookie.get("_id")
             const data = await putData(body,"auth/register/eduAndAct/"+_id)
@@ -51,7 +51,11 @@ export default function CreateAccountBio() {
            }
        
        
- <img src="./images/cancel-white.svg" />
+ <img 
+ src="./images/cancel-white.svg" 
+ style={{cursor:"pointer"}}
+ onClick={()=>router.back()}
+  />
         </div>
         <PageHeader />
 
@@ -71,7 +75,7 @@ export default function CreateAccountBio() {
                 </div>
                    <InputGroup 
                       value={activities} 
-                     onChange={(e)=>setActivities((e.target.value).split(",").map(item=>item.trim()))} 
+                     onChange={(e)=>setActivities((e.target.value))} 
                     placeholder="Extracuricular activitites/Clubs/Ogranization your ‘re a part of" extraStyle={{fontSize:10}}/>
                    <div>
                    <div style={{marginBottom:15,marginTop:40}} className={styles.contestedBefore}>
@@ -84,14 +88,14 @@ Ever been in any beauty pageant?
 <div style={{display:"flex"}}>
 <div style={{marginRight:30}}>
  <Check 
- state={contestedBefore} 
+ state={!contestedBefore} 
  changeState={setContestedBefore}
   text="YES"
   />
 
 </div>
           <Check 
-          state={!contestedBefore}
+          state={contestedBefore}
           changeState={setContestedBefore} 
           text="NO"
           />
@@ -105,7 +109,7 @@ Ever been in any beauty pageant?
                     type="text"
                     icon="message.svg"
                        value={hobbies} 
-                     onChange={(e)=>setHobbies((e.target.value).split(",").map(item=>item.trim()))} 
+                     onChange={(e)=>setHobbies((e.target.value))} 
                     />
                            <InputGroup 
                     placeholder="Future Plans"

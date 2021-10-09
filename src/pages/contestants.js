@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
 import {getData} from '../utils/services/getServices'
 import constants from '../configs/constants'
 import styles from '../styles/Contestants.module.css'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 const log = console.log
@@ -104,6 +105,7 @@ export default function Contestants({contestants=[],error}) {
     return (
         <>
         <header style={{backgroundColor:"rgba(238, 219, 201, 1)",display:"flex",justifyContent:"space-between",alignItems:"center"}}
+
         className={styles.header}
         >
         <div>
@@ -203,6 +205,9 @@ const InputGroup=({icon="user.svg",extraStyle,...rest})=>{
 }
 
 const Contestant=({contestant,setSelectedUser,idx})=>{
+    var linkRef = useRef()
+   
+    const [showCopyLinkModal,setShowCopyLinkModal]=useState(false)
         return (
                 <li style={{border:"1px solid rgba(224, 202, 182, 1)",borderRadius:6,margin:"0 24px 40px 24px",position:"relative"}}>
     <div style={{position:"absolute",right:20,top:20}}>
@@ -217,12 +222,15 @@ const Contestant=({contestant,setSelectedUser,idx})=>{
     <img
         style={{cursor:"pointer"}}
         title="Copy voting link"
+        onClick={()=>setShowCopyLinkModal(true)}
      src="./images/contestant-proceed.svg" />
     </div>
+    
+ 
 
     </div>
         <div style={{width:290,height:237}}>
-<img src="./images/contestant.svg" style={{width:"100%",borderRadius:"6px 6px 0 0"}}/>
+<img src={contestant.avatar||"./images/placeholder.jpeg"} style={{width:"100%",borderRadius:"6px 6px 0 0",height:"100%",objectFit:"cover"}}/>
         </div>
         <div style={{padding:24}}>
         <div style={{marginBottom:20}}>
@@ -245,7 +253,24 @@ Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {idx*1+
         </div>
 
         </div>
+{
+    showCopyLinkModal && <><div
+    onClick={()=>setShowCopyLinkModal(false)}
+     style={{width:"100vw",height:"100vh",position:"fixed",backgroundColor:"rgba(0,0,0,0.6)",top:0,left:0,zIndex:2}}>
+</div>
 
+  <CopyToClipboard text={"https://adandiigbo-contest.herokuapp.com/"+contestant.firstName}
+          onCopy={() =>setShowCopyLinkModal(false)}>
+         <div style={{padding:"18px 56px",backgroundColor:"#fff",position:"absolute",zIndex:3,top:60,fontWeight:"500",color:constants.colors.primary1,borderRadius:8,cursor:"pointer"}}
+className={styles.copyTextWrapper}
+onClick={()=>{}}
+>
+Copy Link
+</div>
+        </CopyToClipboard>
+
+</>
+}
         </li>
         )
 }

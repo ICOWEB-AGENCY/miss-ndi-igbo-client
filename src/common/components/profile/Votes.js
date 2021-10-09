@@ -6,10 +6,13 @@ import Button from '../form/Button'
 import InputGroup from '../form/InputGroup'
 import HorizontalScroll from '../HorizontalScroll'
 import Counts  from './Counts'
+import styles from './Votes.module.css'
 
 export default function Votes({user={}}) {
     return (
-        <main style={{padding:"0px 260px 60px 260px",margin:23,backgroundColor:"#fff",height:"fit-content",borderRadius:8}}>
+        <main style={{backgroundColor:"#fff",height:"fit-content",borderTop:"1px solid rgba(196, 196, 196, 1)"}}
+        className={styles.votesMain}
+        >
      
 
 
@@ -23,7 +26,7 @@ export default function Votes({user={}}) {
   />
 
   </div>
-  <p style={{padding:16}}>
+  <p className={styles.text}>
   {`https://adandiigbo-contest/${user.firstName}...`}
   </p>
    <div style={{width:91,height:54,backgroundColor:"rgba(58, 33, 16, 1)" ,display:"flex",justifyContent:"center",alignItems:"center",borderRadius:"0 6px 6px 0",color:"white"}}>

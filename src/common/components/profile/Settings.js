@@ -9,6 +9,7 @@ import {putProtectedData} from '../../../utils/services/putServices'
 import Error from  '../Error'
 import {useRouter} from 'next/router'
 import constants from '../../../configs/constants'
+import styles from './Settings.module.css'
 
 export default function Settings({user={},setActive}) {
      const router= useRouter()
@@ -42,16 +43,22 @@ const tokens = {token,refreshToken}
         }
         if(updated){
             return (
-<main style={{backgroundColor:"#fff",borderRadius:8,margin:23,height:"fit-content",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",padding:"98px 20px"}}>
+<main style={{backgroundColor:"#fff",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}
+className={styles.updatePassword}
+>
 <div style={{width:100}}>
 <img src="./images/success.png" style={{width:"100%"}} />
 
 </div>
-<p style={{fontSize:48,color:constants.colors.primary1,fontWeight:"700",marginTop:30}}>
+<p style={{color:constants.colors.primary1,fontWeight:"700",marginTop:30}}
+className={styles.updatePasswordHeading}
+>
 Password Updated
 
 </p>
-<p style={{fontSize:20,marginTop:20,marginBottom:30}}>
+<p style={{marginBottom:30}}
+className={styles.pText}
+>
 Your password have been updated successfully
 </p>
 <Button
@@ -63,10 +70,14 @@ onClick={()=>{setActive("Profile");setUpdated(false)}}
             )
         }
     return (
-        <main style={{minHeight:"100vh",paddingBottom:30,margin:23}}>
+        <main style={{minHeight:"100vh"}}
+        className={styles.settingsMain}
+        >
 
 
-<div style={{padding:"98px 190px",borderTop:"1px solid rgba(196, 196, 196, 1)",backgroundColor:"#fff",borderRadius:8}}>
+<div style={{borderTop:"1px solid rgba(196, 196, 196, 1)",backgroundColor:"#fff"}}
+className={styles.formWrapper}
+>
    
    <PageHeader
        title="Create New Password"
@@ -94,7 +105,9 @@ onClick={()=>{setActive("Profile");setUpdated(false)}}
   value={confirmNewPassword}
  onChange={(e)=>setConfirmNewPassword(e.target.value)}
   />
-       <div style={{width:"100%",display:"flex",justifyContent:"flex-end"}}>
+       <div style={{width:"100%"}}
+       className={styles.updateButton}
+       >
   <Button 
          title="Update password"
          width="100%"
@@ -106,7 +119,9 @@ onClick={()=>{setActive("Profile");setUpdated(false)}}
 </div>
 
 
-<div style={{display:"flex",justifyContent:"center",marginTop:30,backgroundColor:"#fff",borderRadius:8,padding:"29px 190px"}}>
+<div style={{display:"flex",justifyContent:"center",backgroundColor:"#fff"}}
+className={styles.logout}
+>
 <button
  style={{display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"transparent",padding:10,border:"1px solid ",borderRadius:4}}>
 <img src="./images/log-out.svg" style={{marginRight:26}} />

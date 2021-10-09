@@ -1,0 +1,50 @@
+
+
+
+
+ .desktopHeader{
+    display:none;
+}
+
+.mobileHeader{
+    display:flex;
+    padding:20px;
+    justify-content:space-between;
+    width:100vw;
+ }
+
+ .profileWrapper{
+     display:none;
+ }
+
+ .grid{
+     display:block;
+ }
+
+ .mobileProfile{
+     display:block;
+ }
+
+
+@media only screen and (min-width: 780px) {
+    .mobileProfile{
+        display:none;
+    }
+    .grid{
+        display:grid;
+        grid-template-columns:1fr 3fr;
+    }
+   
+ .desktopHeader{
+     display:flex;
+ }
+ .mobileHeader{
+    display:none;
+ }
+
+ .profileWrapper{
+    display:block;
+}
+
+
+}

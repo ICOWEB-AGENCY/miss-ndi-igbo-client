@@ -1,0 +1,48 @@
+
+.votesMain{
+    margin:0;
+    width:100vw;
+    border-radius:0;
+    padding:0;
+}
+.formWrapper{
+   border-radius:0;
+   padding:20px;
+   margin-bottom:0;
+}
+
+.text{
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0px 5px;
+}
+
+.mobileProfile{
+    display:block;
+    width:100vw;
+}
+
+@media only screen and (min-width: 780px) {
+    .mobileProfile{
+        display:none;
+    }
+
+    .text{
+        font-size:16px;
+    }
+
+    .votesMain{
+        margin:23px;
+        width:fit-content;
+        border-radius:8px;
+        padding:0px 260px 60px 260px;
+    }
+    .formWrapper{
+        border-radius:8px;
+        padding:38px 70px;
+        margin-bottom:32px;
+    }
+
+}

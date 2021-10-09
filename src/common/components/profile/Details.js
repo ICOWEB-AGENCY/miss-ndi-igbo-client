@@ -31,7 +31,7 @@ export default   function Profile({user={}}) {
                   const [schoolAttended,setSchoolAttended]=useState(user.schoolAttended)
    
     return (
-        <main style={{minHeight:"100vh",paddingBottom:30,margin:23}}>
+        <main style={{minHeight:"100vh"}} className={styles.detailsMain}>
        {/* <ProfileHeader /> */}
        {/* <Button /> */}
 <div style={{borderTop:"1px solid rgba(196, 196, 196, 1)"}}>
@@ -40,7 +40,7 @@ export default   function Profile({user={}}) {
 
 
  <form>
- <div style={{backgroundColor:"#fff",padding:"38px 70px",marginBottom:32,borderRadius:8}}>
+ <div style={{backgroundColor:"#fff"}} className={styles.formWrapper}>
       <ProfileField
        title="First Name"
        type="text"
@@ -85,7 +85,8 @@ export default   function Profile({user={}}) {
         />
          </div>
 
-         <div style={{backgroundColor:"#fff",padding:"38px 70px",marginBottom:32,borderRadius:8}}>
+         <div style={{backgroundColor:"#fff"}}
+         className={styles.formWrapper}>
 
          <div className={styles.grid2}>
         <ProfileField

@@ -9,6 +9,10 @@
     font-size:16px;
 }
 
+.copyTextWrapper{
+    right:60px;
+}
+
 
 @media only screen and (min-width: 780px) {
     .header{
@@ -19,6 +23,11 @@
         width:270px;
 
     }
+
+    .copyTextWrapper{
+        right:-20px;
+    }
+    
 
 
 }

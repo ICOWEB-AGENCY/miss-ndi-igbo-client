@@ -9,6 +9,7 @@ import Counts  from './Counts'
 import {useRouter} from 'next/router'
 import {putProtectedData} from '../../../utils/services/putServices'
 import cookie from "js-cookie"
+import styles from './Main.module.css'
 
 
 export default function Profile({user={},setUser}) {
@@ -37,7 +38,7 @@ console.log(avatarFile)
     }
 
     return (
-        <main style={{paddingBottom:30,backgroundColor:"#fff",paddingTop:39}}>
+        <main style={{paddingBottom:30,backgroundColor:"#fff"}} className={styles.pTop}>
        {/* <ProfileHeader /> */}
        <input
        ref={avatarRef}
@@ -46,7 +47,7 @@ console.log(avatarFile)
         type="file"  style={{display:"none"}}/>
 
 
-<div style={{borderTop:"1px solid rgba(196, 196, 196, 1)"}}>
+<div style={{borderTop:"1px solid rgba(196, 196, 196, 1)",}} className={styles.p20}>
 <div style={{padding:"15px 32px",backgroundColor:"rgba(251, 246, 242, 1)",display:"flex",alignItems:"center"}}>
 <div style={{marginRight:16, width:72,height:72,overflow:"hidden"}}>
 {

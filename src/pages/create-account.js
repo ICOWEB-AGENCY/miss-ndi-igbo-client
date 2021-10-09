@@ -50,9 +50,11 @@ export default function CreateAccountBio() {
            }
        
        
-<Link href="/">
- <img src="./images/cancel-white.svg"  style={{cursor:"pointer"}} />
-</Link>
+ <img 
+ src="./images/cancel-white.svg" 
+ style={{cursor:"pointer"}}
+ onClick={()=>router.back()}
+  />
         </div>
          <PageHeader 
    />

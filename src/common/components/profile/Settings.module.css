@@ -1,0 +1,78 @@
+
+.settingsMain,.updatePassword{
+    margin:0;
+    width:100vw;
+    background-color:#fff;
+}
+.formWrapper,.logout{
+   border-radius:0;
+   padding:20px;
+   margin-bottom:0;
+}
+
+.logout{
+    padding:20px;
+    
+}
+
+.updateButton{
+    justify-content:center;
+    display:block;
+}
+
+.updatePassword{
+    padding:20px;
+}
+
+.updatePasswordHeading{
+    font-size:24px;
+}
+
+.pText{
+    font-size:16px;
+    margin-top:12px;
+    text-align:center;
+}
+
+@media only screen and (min-width: 780px) {
+    
+.pText{
+    font-size:20px;
+    margin-top:20px;
+   
+
+}
+    .updatePassword{
+        padding:98px 20px;
+    }
+
+    .updatePasswordHeading{
+        font-size:40px;
+    }
+
+    .grid2{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        column-gap:20px;
+    }
+
+    .settingsMain{
+        margin:23px;
+        width:fit-content;
+    }
+    .formWrapper,.logout{
+        border-radius:8px;
+        padding:98px 190px;
+        margin-bottom:32px;
+    }
+
+    .logout{
+        padding:29px 190px;
+    }
+    .updateButton{
+        justify-content:flex-end;
+        display:flex
+    }
+    
+
+}
