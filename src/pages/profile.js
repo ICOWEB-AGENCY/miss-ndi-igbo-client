@@ -24,14 +24,15 @@ try {
         }
     }
     return {
-        props:{user:data}
+        props:{theUser:data}
     }
 } catch (error) {
     console.log(error)
     
 }
 }
-export default   function Profile({user={}}) {
+export default   function Profile({theUser={}}) {
+    const [user,setUser]=useState(theUser)
 
     const [active,setActive]=useState("Profile")
     return (
@@ -77,6 +78,7 @@ style={{marginRight:75,display:"flex",alignItems:"center",cursor:"pointer",posit
         <div style={{display:"grid",gridTemplateColumns:"1fr 3fr",backgroundColor:"#E5E5E5"}}>
 <Main 
 user={user}
+setUser={setUser}
 />
 
 {

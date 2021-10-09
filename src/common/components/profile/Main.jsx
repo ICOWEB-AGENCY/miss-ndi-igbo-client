@@ -5,14 +5,31 @@ import ProfileHeader from './ProfileHeader'
 import Button from '../form/Button'
 import InputGroup from '../form/InputGroup'
 import HorizontalScroll from '../HorizontalScroll'
-import Counts  from './/Counts'
+import Counts  from './Counts'
 import {useRouter} from 'next/router'
-import {getProtectedData} from '../../../utils/services/getServices'
+import {putProtectedData} from '../../../utils/services/putServices'
+import cookie from "js-cookie"
 
 
-export default function Profile({user={}}) {
+export default function Profile({user={},setUser}) {
 const avatarRef=useRef()
 const [avatarFile,setAvatarFile]=useState("")
+
+useEffect(() => {
+ const token = cookie.get("token")
+ const refreshToken = cookie.get("refreshToken");
+
+(async function(){
+    if(avatarFile){
+        const body = new FormData()
+        body.append("image",avatarFile)
+   const user =await putProtectedData(body,"users/avatar",{token,refreshToken})
+    setUser(user)
+    }
+ 
+})()
+
+}, [avatarFile])
 console.log(avatarFile)
     const uploadPhoto=()=>{
         console.log("upload")
