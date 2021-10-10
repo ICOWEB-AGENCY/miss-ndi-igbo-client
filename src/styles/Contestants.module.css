@@ -13,10 +13,17 @@
     right:60px;
 }
 
+.updatePasswordHeading{
+    font-size:24px;
+}
+
 
 @media only screen and (min-width: 780px) {
     .header{
         padding:16px 94px;
+    }
+    .updatePasswordHeading{
+        font-size:40px;
     }
 
     .searchBar{

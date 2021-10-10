@@ -31,7 +31,25 @@ return response.data
     }
 
 }
-
+export const postProtectedData=async (data,path,tokens)=>{
+ try {
+        const response = await axios.post(`${baseURL}/${path}`,
+        data,
+            {
+                headers:{
+                    Authorization:`Bearer ${tokens.token}`
+                }
+            }
+        )
+console.log(response)
+return response.data
+        
+    } catch (error) {
+        console.log(error.message)
+        return error.response.data
+        
+    }
+}
 
 
 

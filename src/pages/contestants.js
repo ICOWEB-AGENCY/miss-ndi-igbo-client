@@ -1,11 +1,16 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef,useEffect} from 'react'
 import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
 import {getData} from '../utils/services/getServices'
 import constants from '../configs/constants'
 import styles from '../styles/Contestants.module.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
+import {useRouter } from 'next/router' 
+import Button from "../common/components/form/Button";
+import cookie from "js-cookie";
+import axios from 'axios'
+import queryString  from 'query-string'
+ 
 
 const log = console.log
 export  async function getServerSideProps({req}){
@@ -98,10 +103,79 @@ AGE
         </div>
     )
 }
+const VotingSuccessModal=({setVisible})=>{
+
+    const router= useRouter()
+    const parsed = queryString.parse(router.asPath.split("?")[1])
+const [id,setId]=useState("")
+
+const clearValues=()=>{
+    cookie.remove("contestant")
+    setVisible(false)
+    router.push("/contestants")
+}
+    useEffect(() => {
+     const contestantId=cookie.get("contestant")
+     if(!contestantId){
+         setVisible(false)
+          router.push("/contestants")
+     }
+     setId(parsed.id)
+    }, [])
+    return (
+         <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0,0,0,0.6)",position:"fixed",zIndex:10,top:0,justifyContent:"center",display:"flex",alignItems:"center"}}>
+       <main style={{backgroundColor:"#fff",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",borderRadius:24,padding:"56px 150px"}}
+className={styles.updatePassword}
+>
+<div style={{width:100}}>
+<img src="./images/success.png" style={{width:"100%"}} />
+
+</div>
+<p style={{color:constants.colors.primary1,fontWeight:"700",marginTop:30}}
+className={styles.updatePasswordHeading}
+>
+Password Updated
+
+</p>
+<p style={{marginBottom:30,textAlign:"center"}}
+className={styles.pText}
+>
+You have successfully voted for
+<br/>
+ CONTESTANT {id}, Thank you.
+</p>
+<Button
+title="Continue"
+onClick={clearValues}
+ />
+
+</main>
+
+        </div>
+    )
+}
+
 
 export default function Contestants({contestants=[],error}) {
     const [selectedUser,setSelectedUser]=useState("")
     const [searchOpen,setSearchOpen]=useState(false)
+    const router=useRouter()
+    
+    const [votedModalOpen,setVotedModalOpen]=useState(false)
+useEffect(() => {
+    if(router.asPath.split("?")[1] && router.asPath.split("?")[1].split("=")[0]==="reference"){
+        // if (querys[0]==="reference"){
+                console.log("voted")
+                setVotedModalOpen(true)
+            // }
+    }
+    
+
+}, [])
+
+
+
+
     return (
         <>
         <header style={{backgroundColor:"rgba(238, 219, 201, 1)",display:"flex",justifyContent:"space-between",alignItems:"center"}}
@@ -140,9 +214,17 @@ placeholder="Search by contestant name"
        setSelectedUser={setSelectedUser}
         />
 }
+{
+    votedModalOpen && <VotingSuccessModal 
+    setVisible={setVotedModalOpen}
+    />
+}
      
         <div style={{paddingTop:40}}>
        <header>
+  
+
+
        <h1 style={{color:"rgba(159, 135, 114, 1)",fontSize:16,textAlign:"center",fontWeight:"600",marginBottom:16}}>
 VOTE YOU FAVOURITE CONTESTANT
        </h1>
@@ -204,8 +286,11 @@ const InputGroup=({icon="user.svg",extraStyle,...rest})=>{
     )
 }
 
-const Contestant=({contestant,setSelectedUser,idx})=>{
+const Contestant=({contestant,setSelectedUser})=>{
     var linkRef = useRef()
+    const setValues=()=>{
+
+    }
    
     const [showCopyLinkModal,setShowCopyLinkModal]=useState(false)
         return (
@@ -244,11 +329,16 @@ const Contestant=({contestant,setSelectedUser,idx})=>{
         </div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <span>
-Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {idx*1+1}</span>
+Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contestant.contestantId}</span>
         </span>
-        <button style={{padding:"8px 34px",color:"#fff",backgroundColor:"rgba(58, 33, 16, 1)",borderRadius:4,border:"1px solid rgba(58, 33, 16, 1)",fontWeight:"700"}}>
+        <Link href={`/vote-contestant?id=${(contestant.contestantId)}&contestant=${contestant._id}`}>
+        <a 
+     
+        onClick={setValues}
+        style={{padding:"8px 34px",color:"#fff",backgroundColor:"rgba(58, 33, 16, 1)",borderRadius:4,border:"1px solid rgba(58, 33, 16, 1)",fontWeight:"700"}}>
         Vote
-        </button>
+        </a>
+        </Link>
 
         </div>
 
