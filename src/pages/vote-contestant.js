@@ -59,9 +59,10 @@ export default function VoteContestant({user={}}) {
       reference: (new Date()).getTime().toString(),
       email: email,
       amount: 100*total,
-      // publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
-      publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
+      publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
+      // publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
   };
+
 
     const onSuccess = async (reference) => {
   const body ={reference,email,votes,contestant:parsed.contestant,phone,name,amount}
