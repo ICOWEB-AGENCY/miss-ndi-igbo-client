@@ -250,7 +250,14 @@ Stage{" "}
 
        </header>
 
-<ul style={{display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
+
+       {
+           contestants.length===0?<p style={{fontSize:48,display:"flex",height:"30vh",alignItems:"center",color:constants.colors.primary1,fontWeight:"500"}}>
+           There are no registered Contestants yet
+
+           </p>:<ul style={{display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
+
+
 {
     contestants.map((contestant,idx)=>        <Contestant
     contestant={contestant}
@@ -260,6 +267,9 @@ Stage{" "}
 }
 
 </ul>
+
+       }
+
 
 
        
@@ -331,7 +341,7 @@ const Contestant=({contestant,setSelectedUser})=>{
         <span>
 Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contestant.contestantId}</span>
         </span>
-        <Link href={`/vote-contestant?id=${(contestant.contestantId)}&contestant=${contestant._id}`}>
+        <Link href={`/vote-contestant?id=${(contestant.contestantId)}&contestant=${contestant.username}`}>
         <a 
      
         onClick={setValues}
@@ -349,7 +359,7 @@ Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contes
      style={{width:"100vw",height:"100vh",position:"fixed",backgroundColor:"rgba(0,0,0,0.6)",top:0,left:0,zIndex:2}}>
 </div>
 
-  <CopyToClipboard text={"https://adandiigbo-contest.herokuapp.com/"+contestant.firstName}
+  <CopyToClipboard text={"https://adandiigbo-contest.herokuapp.com/vote-contestant?id=2&contestant="+contestant.username}
           onCopy={() =>setShowCopyLinkModal(false)}>
          <div style={{padding:"18px 56px",backgroundColor:"#fff",position:"absolute",zIndex:3,top:60,fontWeight:"500",color:constants.colors.primary1,borderRadius:8,cursor:"pointer"}}
 className={styles.copyTextWrapper}
@@ -364,5 +374,6 @@ Copy Link
         </li>
         )
 }
+
 
 Contestants.layout="profile"

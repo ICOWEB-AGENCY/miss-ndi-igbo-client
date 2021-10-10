@@ -37,8 +37,6 @@ export default function VoteContestant() {
 
     const onSuccess = async (reference) => {
   const body ={reference,email,votes,contestant:parsed.contestant}
-  const token=cookie.get("token")
-  const refreshToken=cookie.get("refreshToken")
 
   const data = await postData(body,"transactions")
   console.log(data)
