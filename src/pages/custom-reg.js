@@ -20,12 +20,15 @@ export default function CreateAccountBio() {
         const [LGA,setLGA]=useState("")
         const [state,setState]=useState("")
         const [email,setEmail]=useState("")
+        const [otherNames,setOtherNames]=useState("")
       
 
         const save= async(e)=>{
             e.preventDefault()
-            const body = {firstName,lastName,age,hairColor,eyeColor,email,address:residentAddress}
-            const data = await postData(body,"auth/register/bio")
+            const body = {firstName,lastName,otherNames,email,stateOfOrigin:state,LGA}
+            console.log(body)
+            const data = await postData(body,"auth/custom-reg")
+            console.log(data)
          
             if(data.error){
               
@@ -36,7 +39,7 @@ export default function CreateAccountBio() {
                 return 
             }
               cookie.set("_id",data._id)
-           router.push(constants.links.createAccountOrigin)
+           router.push("/registeration-success")
         }
     return (
         <main>
@@ -78,14 +81,14 @@ export default function CreateAccountBio() {
                   </div>
                       <InputGroup 
                    required
-                    value={lastName} 
-                     onChange={(e)=>setLastName(e.target.value)}   
+                    value={otherNames} 
+                     onChange={(e)=>setOtherNames(e.target.value)}   
                    placeholder="Other Name(s)"
                    />
                             <InputGroup 
                    required
                     value={state} 
-                     onChange={(e)=>setStae(e.target.value)}   
+                     onChange={(e)=>setState(e.target.value)}   
                    placeholder="State"
                    />
                             <InputGroup 

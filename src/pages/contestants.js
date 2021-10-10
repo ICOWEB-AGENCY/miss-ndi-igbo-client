@@ -359,7 +359,7 @@ Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contes
      style={{width:"100vw",height:"100vh",position:"fixed",backgroundColor:"rgba(0,0,0,0.6)",top:0,left:0,zIndex:2}}>
 </div>
 
-  <CopyToClipboard text={"https://ndiigbounitedforum.vercel.app/vote-contestant?id=2&contestant="+contestant.username}
+  <CopyToClipboard text={`https://ndiigbounitedforum.vercel.app/vote-contestant?id=${contestant.contestantId}&contestant=`+contestant.username}
           onCopy={() =>setShowCopyLinkModal(false)}>
          <div style={{padding:"18px 56px",backgroundColor:"#fff",position:"absolute",zIndex:3,top:60,fontWeight:"500",color:constants.colors.primary1,borderRadius:8,cursor:"pointer"}}
 className={styles.copyTextWrapper}
