@@ -31,7 +31,7 @@ export default function VoteContestant() {
           const config = {
       reference: (new Date()).getTime().toString(),
       email: email,
-      amount: 5000*votes*1.015,
+      amount: 5000*votes,
       publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"//'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c',
   };
 
