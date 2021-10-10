@@ -134,7 +134,7 @@ className={styles.updatePassword}
 <p style={{color:constants.colors.primary1,fontWeight:"700",marginTop:30}}
 className={styles.updatePasswordHeading}
 >
-Password Updated
+Successful
 
 </p>
 <p style={{marginBottom:30,textAlign:"center"}}
@@ -161,9 +161,12 @@ export default function Contestants({contestants=[],error}) {
     const [searchOpen,setSearchOpen]=useState(false)
     const router=useRouter()
     
-    const [votedModalOpen,setVotedModalOpen]=useState(false)
+    const [votedModalOpen,setVotedModalOpen]=useState(true)
+
+    const query= queryString.parse(router.asPath.split("?")[1])
+    console.log(query)
 useEffect(() => {
-    if(router.asPath.split("?")[1] && router.asPath.split("?")[1].split("=")[0]==="reference"){
+    if(query.reference){
         // if (querys[0]==="reference"){
                 console.log("voted")
                 setVotedModalOpen(true)
@@ -299,7 +302,7 @@ const InputGroup=({icon="user.svg",extraStyle,...rest})=>{
 const Contestant=({contestant,setSelectedUser})=>{
     var linkRef = useRef()
     const setValues=()=>{
-
+cookie.set("contestant",contestant._id)
     }
    
     const [showCopyLinkModal,setShowCopyLinkModal]=useState(false)

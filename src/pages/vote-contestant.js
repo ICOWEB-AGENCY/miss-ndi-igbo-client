@@ -1,7 +1,8 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
 import InputGroup from '../common/components/form/InputGroup'
+import {getData} from '../utils/services/getServices'
 import {postData} from '../utils/services/postServices'
 import styles from '../styles/Create-account.module.css'
 import Error from  '../common/components/Error'
@@ -14,29 +15,56 @@ import { usePaystackPayment } from 'react-paystack';
 import queryString  from 'query-string'
 const log= console.log
 
-export default function VoteContestant() {
+export  async function getServerSideProps({req}){
+try {
+    const cookies= req.cookies
+    console.log(cookies)
+
+    const data = await getData("users/"+cookies.contestant)
+    console.log(data)
+    if(data.error){
+       
+        return {
+            props:{error:data}
+        }
+    }
+    return {
+        props:{user:data}
+    }
+} catch (error) {
+    console.log(error)
+    
+}
+}
+
+
+
+
+export default function VoteContestant({user={}}) {
+  console.log(user)
     const router= useRouter()
     const [error,setError]=useState("")
-    const [firstName,setFirstName]=useState("")
-      const [lastName,setLastName]=useState("")
-       const [age,setAge]=useState("")
-        const [hairColor,setHairColor]=useState("")
+    const [name,setName]=useState("")
         const [votes,setVotes]=useState("")
         const [email,setEmail]=useState("")
-        const [residentAddress,setResidentAddress]=useState("")
+         const [amount,setAmount]=useState(0)
+         const [total,setTotal]=useState(0)
+        const [phone,setPhone]=useState("")
 
         const parsed = queryString.parse(router.asPath.split("?")[1])
+        console.log(parsed)
        
 
           const config = {
       reference: (new Date()).getTime().toString(),
       email: email,
-      amount: 5000*votes,
-      publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"//'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c',
+      amount: 100*total,
+      // publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
+      publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
   };
 
     const onSuccess = async (reference) => {
-  const body ={reference,email,votes,contestant:parsed.contestant}
+  const body ={reference,email,votes,contestant:parsed.contestant,phone,name,amount}
 
   const data = await postData(body,"transactions")
   console.log(data)
@@ -49,7 +77,10 @@ export default function VoteContestant() {
     console.log('closed')
   }
 const initializePayment = usePaystackPayment(config);
-
+useEffect(() => {
+setAmount(votes*50)
+setTotal(votes*50+votes*(50*0.015))
+}, [votes])
        
     return (
         <main>
@@ -73,20 +104,26 @@ const initializePayment = usePaystackPayment(config);
          title={`Vote For Contestant ${parsed.id}`}
    />
             <form>
+            <div style={{marginBottom:0,display:"flex",justifyContent:"center"}}>
+               <div style={{marginBottom:10,width:150,height:150,borderRadius:10}}>
+                <img src={user.avatar} 
+                style={{borderRadius:10,objectFit:"cover",width:"100%",height:"100%"}}
+                alt="Contestant's Image"/>
+
+                </div>
+                
+              </div>
                 <div>
+                
                 <div className={styles.names}>
                
-                <InputGroup
-                value={firstName}
-                onChange={(e)=>setFirstName(e.target.value)
-                }         
-                className={styles.mr10}        />
+            
             
                    <InputGroup 
                    required
-                    value={lastName} 
-                     onChange={(e)=>setLastName(e.target.value)}   
-                   placeholder="Last Name"
+                    value={name} 
+                     onChange={(e)=>setName(e.target.value)}   
+                   placeholder="Enter your Name"
                    />
                   </div>
                 
@@ -99,18 +136,47 @@ const initializePayment = usePaystackPayment(config);
                     />
                           <InputGroup 
                     placeholder="Phone"
-                    type="number"
+                    type="phone"
                     icon="message.svg"
-                      value={residentAddress} 
-                     onChange={(e)=>setResidentAddress(e.target.value)}  
+                      value={phone} 
+                     onChange={(e)=>setPhone(e.target.value)}  
                     />
                           <InputGroup 
-                    placeholder="Votes"
+                    placeholder="Number of votes"
                     type="number"
+                    hint={true}
                     icon="message.svg"
                       value={votes} 
                      onChange={(e)=>setVotes(e.target.value)}  
                     />
+   
+
+                      <InputGroup 
+                    placeholder="Total Amount to be paid"
+                    type="number"
+                    icon="message.svg"
+                      value={amount} 
+                     onChange={(e)=>setVotes(e.target.value)} 
+                     disabled 
+                    />
+
+                {
+                  total!==0 &&     <div>
+                    <p style={{fontWeight:"700",fontSize:14}}>
+                    Vote Amount: {amount} naira
+
+                    </p>
+                        <p style={{fontWeight:"700",fontSize:14}}>
+                    Charge: {amount*0.015} naira
+
+                    </p>
+                        <p style={{fontWeight:"700",fontSize:14}}>
+                    Total Amount: {amount*0.015} +{amount}={total} naira
+
+                    </p>
+
+                    </div>
+                }
 
 
 
