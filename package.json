@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "heroku-postbuild": "npm run build",
-    "start": "next start -p $PORT"
+    "start": "next start"
   },
   "dependencies": {
     "axios": "^0.22.0",
