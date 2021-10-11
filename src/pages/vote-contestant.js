@@ -59,8 +59,8 @@ export default function VoteContestant({user={}}) {
       reference: (new Date()).getTime().toString(),
       email: email,
       amount: 100*total,
-      publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
-      // publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
+      // publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
+      publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
   };
 
 
@@ -82,6 +82,28 @@ useEffect(() => {
 setAmount(votes*50)
 setTotal(votes*50+votes*(50*0.015))
 }, [votes])
+
+const initiatePayment=(e)=>{
+  setError("")
+      e.preventDefault();
+      if(!email){
+        setError("Email field can not be  Empty")
+        return
+      }
+         if(!name){
+        setError("Name field can not be  Empty")
+        return
+      }
+               if(!phone){
+        setError("Phone field can not be  Empty")
+        return
+      }
+                  if(!votes){
+        setError("Number of Votes Must be specified")
+        return
+      }
+     initializePayment(onSuccess, onClose)
+}
        
     return (
         <main>
@@ -137,7 +159,7 @@ setTotal(votes*50+votes*(50*0.015))
                     />
                           <InputGroup 
                     placeholder="Phone"
-                    type="phone"
+                    type="tel"
                     icon="message.svg"
                       value={phone} 
                      onChange={(e)=>setPhone(e.target.value)}  
@@ -183,10 +205,7 @@ setTotal(votes*50+votes*(50*0.015))
 
                   <Button
                    title="Continue"
-                   onClick={(e) => {
-                     e.preventDefault();
-                initializePayment(onSuccess, onClose)
-            }}
+                   onClick={initiatePayment}
                     />
               
 

@@ -5,7 +5,7 @@ export default function Error({category,error}) {
 
 
     return (
-     <div style={{backgroundColor:"#fff",padding:"20px 25px",borderRadius:"6px 0px 0px 6px",position:"fixed",right:-16,top:50,boxShadow:"0 2px 5px rgba(0, 0, 0, 0.05)",display:display}}>
+     <div style={{backgroundColor:"#fff",padding:"20px 25px",borderRadius:"6px 0px 0px 6px",position:"fixed",right:-16,top:50,boxShadow:"0 2px 5px rgba(0, 0, 0, 0.05)",display:display,zIndex:10}}>
 <div>
 <img src="./images/exclamation.svg" 
 style={{marginRight:20}} />
