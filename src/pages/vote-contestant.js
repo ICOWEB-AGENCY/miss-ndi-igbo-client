@@ -15,33 +15,9 @@ import { usePaystackPayment } from 'react-paystack';
 import queryString  from 'query-string'
 const log= console.log
 
-export  async function getServerSideProps({req}){
-try {
-    const cookies= req.cookies
-    console.log(cookies)
 
-    const data = await getData("users/"+cookies.contestant)
-    console.log(data)
-    if(data.error){
-       
-        return {
-            props:{error:data}
-        }
-    }
-    return {
-        props:{user:data}
-    }
-} catch (error) {
-    console.log(error)
-    
-}
-}
-
-
-
-
-export default function VoteContestant({user={}}) {
-  console.log(user)
+export default function VoteContestant() {
+ 
     const router= useRouter()
     const [error,setError]=useState("")
     const [name,setName]=useState("")
@@ -51,7 +27,7 @@ export default function VoteContestant({user={}}) {
          const [total,setTotal]=useState(0)
         const [phone,setPhone]=useState("")
         const [dontProceed,setDontProceed]=useState(true)
-
+const [user,setUser]=useState({})
         const parsed = queryString.parse(router.asPath.split("?")[1])
         console.log(parsed)
        
@@ -83,6 +59,24 @@ useEffect(() => {
 setAmount(votes*50)
 setTotal(votes*50+votes*(50*0.015))
 }, [votes])
+
+useEffect(() => {
+
+(async function(){
+  console.log(parsed)
+  try {
+       const data = await getData("users/u/"+parsed.id)
+  setUser(data)
+  } catch (error) {
+    console.log(error.response.data)
+  }
+ 
+})()
+
+
+}, [])
+
+
 
 const initiatePayment=(e)=>{
   setError("")
@@ -134,6 +128,7 @@ if(email && phone && votes && name){
         </div>
          <PageHeader 
          title={`Vote For Contestant ${parsed.id}`}
+         text="Help your favourite contestant win"
    />
             <form>
             <div style={{marginBottom:0,display:"flex",justifyContent:"center"}}>
