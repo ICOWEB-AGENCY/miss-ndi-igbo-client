@@ -229,7 +229,7 @@ placeholder="Search by contestant name"
 
 
        <h1 style={{color:"rgba(159, 135, 114, 1)",fontSize:16,textAlign:"center",fontWeight:"600",marginBottom:16}}>
-VOTE YOU FAVOURITE CONTESTANT
+VOTE YOUR FAVOURITE CONTESTANT
        </h1>
        <h2 style={{color:"rgba(58, 33, 16, 1)",fontSize:16,fontWeight:"700",textAlign:"center",marginBottom:40}}>
 Click “Vote” to help your favourite win
