@@ -24,7 +24,7 @@ export default function VoteContestant() {
         const [votes,setVotes]=useState("")
         const [email,setEmail]=useState("")
          const [amount,setAmount]=useState(0)
-         const [total,setTotal]=useState(0)
+         const [total,setTotal]=useState("")
         const [phone,setPhone]=useState("")
         const [dontProceed,setDontProceed]=useState(true)
 const [user,setUser]=useState({})
@@ -159,7 +159,7 @@ if(email && phone && votes && name){
                      onChange={(e)=>setName(e.target.value)}   
                    placeholder="Enter your Name"
                    />
-                  </div>
+                 
                 
                      <InputGroup 
                     placeholder="Email Address"
@@ -168,6 +168,7 @@ if(email && phone && votes && name){
                       value={email} 
                      onChange={(e)=>setEmail(e.target.value)}  
                     />
+                     </div>
                           <InputGroup 
                     placeholder="Phone"
                     type="tel"
@@ -175,6 +176,8 @@ if(email && phone && votes && name){
                       value={phone} 
                      onChange={(e)=>setPhone(e.target.value)}  
                     />
+
+                       <div className={styles.names}>
                           <InputGroup 
                     placeholder="Number of votes"
                     type="number"
@@ -189,10 +192,11 @@ if(email && phone && votes && name){
                     placeholder="Total Amount to be paid"
                     type="number"
                     icon="message.svg"
-                      value={total} 
+                      value={total===0?"":total} 
                      onChange={(e)=>setTotal(e.target.value)} 
                      disabled 
                     />
+                    </div>
 
                 {
                   total!==0 &&     <div>

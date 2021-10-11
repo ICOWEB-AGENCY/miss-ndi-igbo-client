@@ -34,6 +34,14 @@ button{
 }
 
 
+.fade{
+  opacity:0.5;
+}
+.fade:hover{
+opacity:1!important;
+}
+
+
 
 
 /* desktop design  */

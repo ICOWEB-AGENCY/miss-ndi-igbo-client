@@ -304,6 +304,12 @@ const Contestant=({contestant,setSelectedUser})=>{
     const setValues=()=>{
 cookie.set("contestant",contestant._id)
     }
+
+    const [openImageModal,setOpenImageModal]=useState(false)
+
+    const openImage =()=>{
+setOpenImageModal(true)
+    }
    
     const [showCopyLinkModal,setShowCopyLinkModal]=useState(false)
         return (
@@ -327,8 +333,12 @@ cookie.set("contestant",contestant._id)
  
 
     </div>
+
         <div style={{width:290,height:237}}>
-<img src={contestant.avatar||"./images/placeholder.jpeg"} style={{width:"100%",borderRadius:"6px 6px 0 0",height:"100%",objectFit:"cover"}}/>
+<img 
+onClick={openImage}
+title="Click to see Full Image of Contestant"
+src={contestant.avatar||"./images/placeholder.jpeg"} style={{width:"100%",borderRadius:"6px 6px 0 0",height:"100%",objectFit:"cover",cursor:"pointer"}}/>
         </div>
         <div style={{padding:24}}>
         <div style={{marginBottom:20}}>
@@ -359,6 +369,26 @@ Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contes
         </div>
 
         </div>
+
+        {
+            openImageModal && <div style={{position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgba(0,0,0,0.6)",top:0,left:0,zIndex:10,display:"flex",justifyContent:"center"}}>
+           
+<div
+onClick={()=>setOpenImageModal(false)}
+ style={{padding:15,boxSizing:"border-box",height:"100%",position:"relative",width:"fit-content"}}>
+<img 
+src={contestant.avatar} style={{borderRadius:10,width:"100%",height:"100%",objectFit:"cover"}} />
+<span
+onClick={()=>setOpenImageModal(false)}
+ style={{position:"absolute",top:20,color:"white",right:20,cursor:"pointer",width:30,height:30,backgroundColor:"#000",justifyContent:"center",alignItems:"center",display:"flex",borderRadius:100}}
+ className="fade"
+ >
+X
+</span>
+</div>
+
+            </div>
+        }
 {
     showCopyLinkModal && <><div
     onClick={()=>setShowCopyLinkModal(false)}
