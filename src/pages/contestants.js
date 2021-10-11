@@ -217,11 +217,11 @@ placeholder="Search by contestant name"
        setSelectedUser={setSelectedUser}
         />
 }
-{
+{/* {
     votedModalOpen && <VotingSuccessModal 
     setVisible={setVotedModalOpen}
     />
-}
+} */}
      
         <div style={{paddingTop:40}}>
        <header>
