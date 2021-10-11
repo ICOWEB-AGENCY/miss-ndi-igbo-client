@@ -50,6 +50,7 @@ export default function VoteContestant({user={}}) {
          const [amount,setAmount]=useState(0)
          const [total,setTotal]=useState(0)
         const [phone,setPhone]=useState("")
+        const [dontProceed,setDontProceed]=useState(true)
 
         const parsed = queryString.parse(router.asPath.split("?")[1])
         console.log(parsed)
@@ -59,8 +60,8 @@ export default function VoteContestant({user={}}) {
       reference: (new Date()).getTime().toString(),
       email: email,
       amount: 100*total,
-      // publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
-      publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
+      publicKey: "pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be"
+      // publicKey:process.NODE_ENV==="production"?"pk_live_b46762cf95f045b5d7b9e8ca27e7bc1d28d178be":'pk_test_b8241186ab1ccd92c2a4a302501be9066f4c452c'
   };
 
 
@@ -104,6 +105,14 @@ const initiatePayment=(e)=>{
       }
      initializePayment(onSuccess, onClose)
 }
+
+useEffect(() => {
+if(email && phone && votes && name){
+  setDontProceed(false)
+}else{
+  setDontProceed(true)
+}
+}, [email,phone,name.votes])
        
     return (
         <main>
@@ -206,6 +215,7 @@ const initiatePayment=(e)=>{
                   <Button
                    title="Continue"
                    onClick={initiatePayment}
+                  //  disabled={dontProceed}
                     />
               
 
