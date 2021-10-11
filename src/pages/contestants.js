@@ -340,6 +340,9 @@ cookie.set("contestant",contestant._id)
         </h3>
 
         </div>
+                <div>
+Votes: <span style={{fontWeight:"700",color:constants.colors.primary1}}>{contestant.votes} </span>
+        </div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <span>
 Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contestant.contestantId}</span>

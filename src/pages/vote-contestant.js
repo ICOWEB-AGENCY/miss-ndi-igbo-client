@@ -182,8 +182,8 @@ if(email && phone && votes && name){
                     placeholder="Total Amount to be paid"
                     type="number"
                     icon="message.svg"
-                      value={amount} 
-                     onChange={(e)=>setVotes(e.target.value)} 
+                      value={total} 
+                     onChange={(e)=>setTotal(e.target.value)} 
                      disabled 
                     />
 
