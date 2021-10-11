@@ -142,6 +142,9 @@ if(email && phone && votes && name){
                 {user.firstName}{" "}{user.otherNames}
 
                 </p>
+                  <p style={{fontWeight:"600",fontSize:20}}>
+                Votes:{" "}<span>{user.votes}</span>
+                </p>
                 
               </div>
                 <div>
