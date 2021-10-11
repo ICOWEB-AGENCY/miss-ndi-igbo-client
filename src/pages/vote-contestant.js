@@ -114,7 +114,7 @@ if(email && phone && votes && name){
         
            {
                error &&  <Error
-               category="Error Creating Account"
+               category="Voting Error"
                error={error}
                 />
            }
@@ -131,13 +131,17 @@ if(email && phone && votes && name){
          text="Help your favourite contestant win"
    />
             <form>
-            <div style={{marginBottom:0,display:"flex",justifyContent:"center"}}>
-               <div style={{marginBottom:10,width:150,height:150,borderRadius:10}}>
+            <div style={{marginBottom:10,display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}}>
+               <div style={{marginBottom:5,width:150,height:150,borderRadius:10}}>
                 <img src={user.avatar} 
                 style={{borderRadius:10,objectFit:"cover",width:"100%",height:"100%"}}
                 alt="Contestant's Image"/>
 
                 </div>
+                <p style={{fontWeight:"600",fontSize:15}}>
+                {user.firstName}{" "}{user.otherNames}
+
+                </p>
                 
               </div>
                 <div>
