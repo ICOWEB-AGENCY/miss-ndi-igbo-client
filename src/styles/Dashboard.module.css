@@ -1,0 +1,19 @@
+.container{
+    margin:0px 94px;
+}
+
+.summaryCard{
+    background-image:url("../../public/images/bg.png");
+    padding:32px 40px;
+}
+
+.cardimageWrapper{
+    width:80px;
+    height:80px;
+    background-color:#fff;
+    justify-content:center;
+    display:flex;
+    align-items:center;
+    border-radius:100px;
+    
+}

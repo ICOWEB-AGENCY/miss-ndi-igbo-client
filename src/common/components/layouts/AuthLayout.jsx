@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function AuthLayout({children}) {
   
-  if(children.type.layout==="profile"){
+  if(children.type.layout==="profile"||children.type.layout==="dashboard"){
     return (
       <>
 {

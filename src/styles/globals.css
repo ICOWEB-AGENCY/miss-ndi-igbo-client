@@ -20,7 +20,9 @@ a {
 ul{
   list-style-type:none;
 }
-
+.cw{
+  color:"#fff";
+}
 input:focus{
   outline:red;
 }
