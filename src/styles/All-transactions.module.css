@@ -1,0 +1,17 @@
+.th {
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.tbody > tr:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.tbody > tr:hover {
+  background-color: #ddd;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
