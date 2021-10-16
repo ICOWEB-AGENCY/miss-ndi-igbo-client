@@ -1,5 +1,6 @@
 import axios from "axios" 
 import baseURL from "../../configs/baseURL"
+import cookie from 'js-cookie'
 
 export const logUser=async (data)=>{
 
@@ -31,17 +32,17 @@ return response.data
     }
 
 }
-export const postProtectedData=async (data,path,tokens)=>{
+export const postProtectedData = async (data, path, tokens) => {
+    const token = cookie.get("token")
  try {
         const response = await axios.post(`${baseURL}/${path}`,
         data,
             {
                 headers:{
-                    Authorization:`Bearer ${tokens.token}`
+                    Authorization:`Bearer ${token||token.token}`
                 }
             }
         )
-console.log(response)
 return response.data
         
     } catch (error) {

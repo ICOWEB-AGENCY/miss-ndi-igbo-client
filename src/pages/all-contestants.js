@@ -1,7 +1,7 @@
 import React,{useState,useRef,useEffect} from 'react'
 import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
-import {getData} from '../utils/services/getServices'
+import {getProtectedData} from '../utils/services/getServices'
 import constants from '../configs/constants'
 import styles from '../styles/Contestants.module.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -16,12 +16,16 @@ const log = console.log
 export  async function getServerSideProps({req}){
 try {
     const {token,refreshToken} = req.cookies
-    const data = await getData("users")
+    
+    const data = await getProtectedData("admin/users?order=1",{token,refreshToken})
     console.log(data)
-    if(data.error){
+   if(data.error){
        
         return {
-            props:{error:data}
+            redirect: {
+                    destination: '/login',
+                    permanent: false,
+                  },
         }
     }
     return {
@@ -347,12 +351,12 @@ Votes: {contestant.votes}
         <span>
 Contestant <span style={{color:"rgba(58, 33, 16, 1)",fontWeight:"700"}}> {contestant.contestantId}</span>
         </span>
-        <Link href={`/vote-contestant?id=${(contestant.contestantId)}&contestant=${contestant.username}`}>
+        <Link href={`/update-votes?id=${(contestant.contestantId)}`}>
         <a 
      
         onClick={setValues}
-        style={{padding:"8px 34px",color:"#fff",backgroundColor:"rgba(58, 33, 16, 1)",borderRadius:4,border:"1px solid rgba(58, 33, 16, 1)",fontWeight:"700"}}>
-        Vote
+        style={{padding:"8px 15px",color:"#fff",backgroundColor:"rgba(58, 33, 16, 1)",borderRadius:4,border:"1px solid rgba(58, 33, 16, 1)",fontWeight:"700"}}>
+        Update Vote
         </a>
         </Link>
 

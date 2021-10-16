@@ -3,7 +3,7 @@ import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
 import InputGroup from '../common/components/form/InputGroup'
 import {getData} from '../utils/services/getServices'
-import {postData} from '../utils/services/postServices'
+import {postProtectedData} from '../utils/services/postServices'
 import styles from '../styles/Create-account.module.css'
 import Error from  '../common/components/Error'
 import CreateNav from  '../common/components/nav/CreateNav'
@@ -12,11 +12,39 @@ import {useRouter} from 'next/router'
 import constants from '../configs/constants'
 import Button from '../common/components/form/Button';
 import { usePaystackPayment } from 'react-paystack';
-import queryString  from 'query-string'
-const log= console.log
+import queryString from 'query-string'
+import {getProtectedData} from '../utils/services/getServices'
+const log = console.log
 
 
-export default function VoteContestant() {
+
+export  async function getServerSideProps({req,res,query}){
+  try {
+  
+       
+      const {token,refreshToken} = req.cookies
+      const data = await getProtectedData("admin/users/"+query.id,{token,refreshToken})
+      if(data.error){
+         
+          return {
+              redirect: {
+                      destination: '/login',
+                      permanent: false,
+                    },
+          }
+      }
+      return {
+          props:{contestant:data}
+      }
+  } catch (error) {
+      console.log(error)
+      
+  }
+  }
+
+
+export default function VoteContestant({ contestant = {} }) {
+  console.log(contestant)
  
     const router= useRouter()
     const [error,setError]=useState("")
@@ -27,23 +55,34 @@ export default function VoteContestant() {
          const [total,setTotal]=useState("")
         const [phone,setPhone]=useState("")
         const [dontProceed,setDontProceed]=useState(true)
-        const [success,setSuccess]=useState(false)
-const [user,setUser]=useState({})
+  const [success, setSuccess] = useState(false)
+  const [user,setUser]=useState(contestant)
         const parsed = queryString.parse(router.asPath.split("?")[1])
         console.log(parsed)
        
-
+useEffect(() => {
+  setUser(contestant)
+}, [contestant])
     
 
     const onSuccess = async (e) => {
       e.preventDefault()
-  const body ={reference:{reference:"None"},email,votes,contestant:user.username,phone,name:"admin",amount}
-  console.log(body)
-
-  const data = await postData(body,"transactions")
-  console.log(data)
-  setSuccess(true)
-  setUser(data)
+      try {
+        const body = { votes, contestant: contestant.username, amount }
+        console.log(body)
+  
+    const data = await postProtectedData(body,"admin/transactions")
+        if (data.error?.status === 401) {
+          router.push("/login")
+          return 
+    }
+    setSuccess(true)
+    setUser(data)
+        
+      } catch (error) {
+        console.log(error)
+      }
+     
 
   };
 
@@ -53,43 +92,7 @@ setAmount(votes*50)
 setTotal(votes*50)
 }, [votes])
 
-useEffect(() => {
 
-(async function(){
-  console.log(parsed)
-  try {
-       const data = await getData("users/u/"+parsed.id)
-       console.log(data)
-  setUser(data)
-  } catch (error) {
-    console.log(error.response.data)
-  }
- 
-})()
-
-
-}, [])
-
-
-
-const initiatePayment=(e)=>{
-  setError("")
-      e.preventDefault();
-      if(!email){
-        setError("Email field can not be  Empty")
-        return
-      }
-        
-               if(!phone){
-        setError("Phone field can not be  Empty")
-        return
-      }
-                  if(!votes){
-        setError("Number of Votes Must be specified")
-        return
-      }
-     initializePayment(onSuccess, onClose)
-}
 
 useEffect(() => {
 if(email && phone && votes && name){
@@ -143,26 +146,6 @@ if(email && phone && votes && name){
               </div>
                 <div>
                 
-                <div className={styles.names}>
-                    
-                
-                     <InputGroup 
-                    placeholder="Email Address"
-                    type="email"
-                    icon="message.svg"
-                      value={email} 
-                     onChange={(e)=>setEmail(e.target.value)}  
-                    />
-                           <InputGroup 
-                    placeholder="Phone"
-                    type="tel"
-                    icon="message.svg"
-                      value={phone} 
-                     onChange={(e)=>setPhone(e.target.value)}  
-                    />
-                     </div>
-                   
-
                        <div className={styles.names}>
                           <InputGroup 
                     placeholder="Number of votes"

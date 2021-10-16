@@ -1,7 +1,7 @@
 import React,{useState,useRef,useEffect} from 'react'
 import PageHeader from '../common/components/headers/PageHeader'
 import Link from 'next/link'
-import {getData} from '../utils/services/getServices'
+import {getProtectedData} from '../utils/services/getServices'
 import constants from '../configs/constants'
 import styles from '../styles/Dashboard.module.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -86,15 +86,20 @@ Since last month
  } 
 
 const log = console.log
-export  async function getServerSideProps({req}){
+export  async function getServerSideProps({req,res}){
 try {
+
+     
     const {token,refreshToken} = req.cookies
-    const data = await getData("users")
-    console.log(data)
+    console.log(token)
+    const data = await getProtectedData("admin/users",{token,refreshToken})
     if(data.error){
        
         return {
-            props:{error:data}
+            redirect: {
+                    destination: '/login',
+                    permanent: false,
+                  },
         }
     }
     return {

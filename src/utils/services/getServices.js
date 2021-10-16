@@ -1,22 +1,30 @@
 import axios from "axios" 
 import baseURL from "../../configs/baseURL"
+import cookie from 'js-cookie'
 
 export const getProtectedData=async (path,tokens)=>{
 
     try {
+         const token = cookie.get("token")
+         console.log("this")
+         console.log(token)
         const response = await axios.get(`${baseURL}/${path}`,
             {
                 headers:{
-                    Authorization:`Bearer ${tokens.token}`
+                    Authorization:`Bearer ${token||tokens.token}`
                 }
             }
         )
-console.log(response)
+        console.log(response)
 return response.data
         
     } catch (error) {
-        console.log(error.response.data)
-        return {error:error.response.data.error}
+        console.log(error.message)
+        if (error.response.data.error.status === 401) {
+            return {error:error.response.data.error}
+        }
+        console.log(error.response)
+       
         
     }
 
@@ -26,7 +34,6 @@ export const getData=async (path)=>{
 
     try {
         const response = await axios.get(`${baseURL}/${path}`)
-console.log(response)
 return response.data
         
     } catch (error) {
