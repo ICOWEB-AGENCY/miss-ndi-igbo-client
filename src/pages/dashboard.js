@@ -187,7 +187,9 @@ AGE
 export default function Dashboard({contestants=[],error}) {
     const [selectedUser,setSelectedUser]=useState("")
     const [searchOpen,setSearchOpen]=useState(false)
+    const [active,setActive]=useState("Dashboard")
     const router=useRouter()
+     const category= [{item:"Dashboard",img:"user",route:"dashboard"},{item:"Transactions",img:"menu",route:"all-transactions"},{item:"Contestants",img:"settings",route:"all-contestants"}]
     
     const [votedModalOpen,setVotedModalOpen]=useState(false)
 
@@ -199,33 +201,44 @@ export default function Dashboard({contestants=[],error}) {
 
     return (
         <>
-        <header style={{backgroundColor:"rgba(238, 219, 201, 1)",display:"flex",justifyContent:"space-between",alignItems:"center"}}
-
-        className={styles.header}
+   <header style={{padding:"16px 94px",display:"flex"}}
+        className={styles.desktopHeader}
         >
-        <div>
-       <Link  href="/">
- <img src="./images/logo-big.png"  style={{cursor:"pointer"}} />
-       </Link>
+
+        <div style={{marginRight:200}}>
+        <Link href="/contestants" >
+<img src="./images/logo-big.png" style={{cursor:"pointer"}} />
+</Link>
         </div>
-     <div style={{display:"flex",alignItems:"center",position:"relative"}}>
- {
-     false &&   <>  <form>
-<input 
-style={{padding:10,backgroundColor:"transparent",border:"none",fontStyle:"italic"}}
+        <ul style={{display:"flex"}}>
+{
+    
+       category.map(menuItem=>{
+            return (
+<li 
+onClick={()=>router.push(menuItem.route)}
+style={{marginRight:75,display:"flex",alignItems:"center",cursor:"pointer",position:"relative"}}>
+       
+   <img src={`./images/profile-${menuItem.img}.svg`}  style={{marginRight:17}}/>
+        <span style={{color:active===menuItem.item?constants.colors.primary1:"rgba(159, 135, 114, 1)",fontWeight:"600"}}>
 
-className={styles.searchBar}
-placeholder="Search by contestant name"
- />
-     </form>
+        {menuItem.item}
+       
+        
+        </span>
+      {
+          active===menuItem.item &&   <div
+        style={{height:5,width:"100%",backgroundColor:constants.colors.primary1,borderRadius:100,position:"absolute",bottom:-20}}
+         />
+      }
 
-</>
- }
-        <img
-        onClick={()=>setSearchOpen(!searchOpen)}
-         src="./images/search.png"  style={{cursor:"pointer"}}/>
-    </div>
+        </li>
+            )
+        })
+}
 
+
+        </ul>
 
         </header>
         <main style={{display:"flex",minHeight:"100vh",justifyContent:"center",backgroundColor:"rgba(255, 253, 251, 1)"}}>
