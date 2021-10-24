@@ -1,78 +1,81 @@
-.grid2Or3{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    column-gap:15px;
-    width:100%;
+.grid2Or3 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 15px;
+  width: 100%;
 }
-.grid2Or3Item{
-    grid-column: 1 / span 2;
-  }
-.flexEndButton{
-    width:100%;
+.grid2Or3Item {
+  grid-column: 1 / span 2;
 }
-
-.successText{
-    font-size:20px;
-}
-.successContent{
-    font-size:14px;
-}
-.names{
-    display:block;
+.flexEndButton {
+  width: 100%;
 }
 
-
-
+.successText {
+  font-size: 20px;
+}
+.successTextNew {
+  font-size: 60px;
+}
+.successContent {
+  font-size: 14px;
+}
+.successContentNew {
+  font-size: 28px;
+}
+.names {
+  display: block;
+}
 
 @media only screen and (min-width: 780px) {
-    .progressWrapper{
-        justify-content:space-between;
-        flex-direction:row;
-    }
-
-    .progressBar{
-        width:50%;
-        margin-bottom:0px;
-    }
-    .names{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        column-gap:15px;
-
-
-    }
-    .successText{
-        font-size:24px;
-    }
-    .successContent{
-        font-size:16px;
-    }
-    
-  .mr10{
-      margin-right:15px;
-  }
-  .grid2Or3{
-    grid-template-columns:repeat(3,1fr);
-  }
-  .grid2{
-    grid-template-columns:repeat(2,1fr);
-    display:grid;
-    column-gap:15px;
+  .progressWrapper {
+    justify-content: space-between;
+    flex-direction: row;
   }
 
-  .contestedBefore{
-      display:flex;
-      align-items:center;
+  .progressBar {
+    width: 50%;
+    margin-bottom: 0px;
+  }
+  .names {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
+  }
+  .successText {
+    font-size: 24px;
+  }
+  .successTextNew {
+    font-size: 100px;
+  }
+  .successContent {
+    font-size: 20px;
+  }
+  .successContentNew {
+    font-size: 40px;
+  }
 
+  .mr10 {
+    margin-right: 15px;
   }
-  .flexEnd{
-      display:flex;
-      justify-content:flex-end;
+  .grid2Or3 {
+    grid-template-columns: repeat(3, 1fr);
   }
-  .flexEndButton{
-      width:fit-content;
-  }
- 
- 
+  .grid2 {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    column-gap: 15px;
   }
 
+  .contestedBefore {
+    display: flex;
+    align-items: center;
+  }
+  .flexEnd {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .flexEndButton {
+    width: fit-content;
+  }
+}

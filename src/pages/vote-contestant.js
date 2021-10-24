@@ -14,23 +14,24 @@ import { usePaystackPayment } from "react-paystack";
 import queryString from "query-string";
 const log = console.log;
 
-
-
-export const getServerSideProps=async ({ req, res, query })=>{
-  log(query)
+export const getServerSideProps = async ({ req, res, query }) => {
+  return {
+    redirect: {
+      destination: "/contest-info",
+      permanent: false,
+    },
+  };
 
   const data = await getData("users/u/" + query.id);
 
-
-
   return {
     props: {
-      contestant:data
-    }
-  }
-}
+      contestant: data,
+    },
+  };
+};
 
-export default function VoteContestant({contestant={}}) {
+export default function VoteContestant({ contestant = {} }) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [name, setName] = useState("");
