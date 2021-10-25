@@ -156,7 +156,7 @@ export default function Dashboard({ data = {}, error }) {
         }}
       >
         <div style={{ paddingTop: 40 }}>
-          <NewMessage />
+          {/* <NewMessage /> */}
 
           <main style={{ backgroundColor: "#fff", padding: 15 }}>
             <form>
@@ -179,6 +179,8 @@ export default function Dashboard({ data = {}, error }) {
 
                 <th className={styles.th}>phone</th>
                 <th className={styles.th}>amount</th>
+                <th className={styles.th}>votes</th>
+
                 <th className={styles.th}>Contestant</th>
                 <th className={styles.th}>reference</th>
                 <th className={styles.th}>Date</th>
@@ -214,6 +216,7 @@ export default function Dashboard({ data = {}, error }) {
                         : transaction.amount}
                       {transaction.amount < 0 && "**"}
                     </td>
+                    <td className={styles.th}>{transaction.amount / 50}</td>
                     <td className={styles.th}>
                       {transaction.contestant.contestantId}
                     </td>

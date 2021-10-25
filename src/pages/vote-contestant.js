@@ -15,12 +15,12 @@ import queryString from "query-string";
 const log = console.log;
 
 export const getServerSideProps = async ({ req, res, query }) => {
-  return {
-    redirect: {
-      destination: "/contest-info",
-      permanent: false,
-    },
-  };
+  // return {
+  //   redirect: {
+  //     destination: "/contest-info",
+  //     permanent: false,
+  //   },
+  // };
 
   const data = await getData("users/u/" + query.id);
 
