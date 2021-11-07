@@ -400,7 +400,7 @@ export default function Contestants({ contestants = [], error }) {
                 }}
               ></div>
               <div style={{ padding: "0 30px" }}>
-                <span
+                {/* <span
                   style={{
                     fontWeight: "700",
                     fontSize: 24,
@@ -408,7 +408,7 @@ export default function Contestants({ contestants = [], error }) {
                   }}
                 >
                   Stage{" "}
-                </span>
+                </span> */}
                 <span
                   style={{
                     fontWeight: "700",
@@ -416,7 +416,7 @@ export default function Contestants({ contestants = [], error }) {
                     color: "rgba(58, 33, 16, 1)",
                   }}
                 >
-                  2
+                  GRAND FINALE
                 </span>
               </div>
               <div
