@@ -139,17 +139,112 @@ export default function VoteContestant({ contestant = {} }) {
           onClick={() => router.back()}
         />
       </div>
-      <div
-        style={{
-          textAlign: "center",
-          paddingTop: 180,
-          fontSize: 30,
-          fontWeight: "700",
-        }}
-      >
-        Sorry , you can't vote online{"\n"}.Please contact Contestant or
-        organizers to vote.
-      </div>
+      <PageHeader
+        title={`Vote For Contestant ${parsed.id}`}
+        text="Help your favourite contestant win"
+      />
+      <form>
+        <div
+          style={{
+            marginBottom: 10,
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              marginBottom: 5,
+              width: 150,
+              height: 150,
+              borderRadius: 10,
+            }}
+          >
+            <img
+              src={user.avatar}
+              style={{
+                borderRadius: 10,
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+              }}
+              alt="Contestant's Image"
+            />
+          </div>
+          <p style={{ fontWeight: "600", fontSize: 15 }}>
+            {user.firstName} {user.otherNames}
+          </p>
+          <p style={{ fontWeight: "600", fontSize: 20 }}>
+            Votes: <span>{user.votes}</span>
+          </p>
+        </div>
+        <div>
+          <div className={styles.names}>
+            <InputGroup
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your Name"
+            />
+
+            <InputGroup
+              placeholder="Email Address"
+              type="email"
+              icon="message.svg"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <InputGroup
+            placeholder="Phone"
+            type="tel"
+            icon="message.svg"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+
+          <div className={styles.names}>
+            <InputGroup
+              placeholder="Number of votes"
+              type="number"
+              hint={true}
+              icon="message.svg"
+              value={votes}
+              onChange={(e) => setVotes(e.target.value)}
+            />
+
+            <InputGroup
+              placeholder="Total Amount to be paid"
+              type="number"
+              icon="message.svg"
+              value={total === 0 ? "" : total}
+              onChange={(e) => setTotal(e.target.value)}
+              disabled
+            />
+          </div>
+
+          {total !== 0 && (
+            <div>
+              <p style={{ fontWeight: "700", fontSize: 14 }}>
+                Vote Amount: {amount} naira
+              </p>
+              <p style={{ fontWeight: "700", fontSize: 14 }}>
+                Charge: {amount * 0.015} naira
+              </p>
+              <p style={{ fontWeight: "700", fontSize: 14 }}>
+                Total Amount: {amount * 0.015} +{amount}={total} naira
+              </p>
+            </div>
+          )}
+
+          <Button
+            title="Continue"
+            onClick={initiatePayment}
+            //  disabled={dontProceed}
+          />
+        </div>
+      </form>
     </main>
   );
 }
