@@ -39,176 +39,181 @@ export async function getServerSideProps({ req }) {
 
 const ContestantProfileModal = ({ user, setSelectedUser }) => {
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "rgba(0,0,0,0.6)",
-        position: "fixed",
-        zIndex: 10,
-        top: 0,
-        justifyContent: "center",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <>
       <div
         style={{
-          borderRadius: 24,
-          backgroundColor: "#fff",
-          padding: 20,
-          margin: 20,
-          position: "relative",
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0,0,0,0.6)",
+          position: "fixed",
+          zIndex: 10,
+          top: 0,
+          justifyContent: "center",
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        <div style={{ position: "absolute", right: 20, cursor: "pointer" }}>
-          <img
-            src="./images/cancel-pink.svg"
-            onClick={() => setSelectedUser("")}
-          />
-        </div>
         <div
-          style={{ display: "flex", alignItems: "center", marginBottom: 15 }}
+          style={{
+            borderRadius: 24,
+            backgroundColor: "#fff",
+            padding: 20,
+            margin: 20,
+            position: "relative",
+          }}
         >
+          <div style={{ position: "absolute", right: 20, cursor: "pointer" }}>
+            <img
+              src="./images/cancel-pink.svg"
+              onClick={() => setSelectedUser("")}
+            />
+          </div>
           <div
-            style={{
-              marginRight: 30,
-              width: 72,
-              height: 72,
-              overflow: "hidden",
-            }}
+            style={{ display: "flex", alignItems: "center", marginBottom: 15 }}
           >
-            {!user.avatar ? (
-              <p
+            <div
+              style={{
+                marginRight: 30,
+                width: 72,
+                height: 72,
+                overflow: "hidden",
+              }}
+            >
+              {!user.avatar ? (
+                <p
+                  style={{
+                    borderRadius: 30,
+                    backgroundColor: "rgba(0,0,34)",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
+                    fontWeight: "700",
+                    fontSize: 25,
+                  }}
+                >
+                  {`${user.lastName[0].toUpperCase()}${user.firstName[0].toUpperCase()}`}
+                </p>
+              ) : (
+                <img
+                  src={user.avatar}
+                  style={{
+                    borderRadius: 30,
+                    width: "100%",
+                    height: "100%",
+                    overflow: "hidden",
+                    objectFit: "cover",
+                  }}
+                />
+              )}
+            </div>
+            <div>
+              <h2
                 style={{
-                  borderRadius: 30,
-                  backgroundColor: "rgba(0,0,34)",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
                   fontWeight: "700",
-                  fontSize: 25,
+                  fontStyle: "italic",
+                  textTransform: "uppercase",
+                  color: "rgba(58, 33, 16, 1)",
                 }}
               >
-                {`${user.lastName[0].toUpperCase()}${user.firstName[0].toUpperCase()}`}
-              </p>
-            ) : (
-              <img
-                src={user.avatar}
-                style={{
-                  borderRadius: 30,
-                  width: "100%",
-                  height: "100%",
-                  overflow: "hidden",
-                  objectFit: "cover",
-                }}
-              />
-            )}
+                {user.firstName}
+              </h2>
+              <h3 style={{ fontWeight: "700", color: "rgba(58, 33, 16, 1)" }}>
+                {user.lastName} {user.otherNames}
+              </h3>
+            </div>
           </div>
-          <div>
-            <h2
-              style={{
-                fontWeight: "700",
-                fontStyle: "italic",
-                textTransform: "uppercase",
-                color: "rgba(58, 33, 16, 1)",
-              }}
-            >
-              {user.firstName}
-            </h2>
-            <h3 style={{ fontWeight: "700", color: "rgba(58, 33, 16, 1)" }}>
-              {user.lastName} {user.otherNames}
-            </h3>
-          </div>
-        </div>
-        <table>
-          <thead style={{ paddingBottom: 30 }}>
-            <th
-              style={{
-                paddingRight: 40,
-                fontSize: 14,
-                color: "rgba(159, 135, 114, 1)",
-                fontWeight: "600",
-                paddingBottom: 10,
-              }}
-            >
-              STATE OF ORIGIN
-            </th>
-            <th
-              style={{
-                paddingRight: 20,
-                fontSize: 14,
-                color: "rgba(159, 135, 114, 1)",
-                fontWeight: "600",
-                paddingBottom: 10,
-              }}
-            >
-              LGA
-            </th>
-            <th
-              style={{
-                paddingRight: 20,
-                fontSize: 14,
-                color: "rgba(159, 135, 114, 1)",
-                fontWeight: "600",
-                paddingBottom: 10,
-              }}
-            >
-              SCHOOL ATTENDED
-            </th>
-            <th
-              style={{
-                fontSize: 14,
-                color: "rgba(159, 135, 114, 1)",
-                fontWeight: "600",
-                paddingBottom: 10,
-              }}
-            >
-              AGE
-            </th>
-          </thead>
-          <tbody>
-            <tr>
-              <td
+          <table>
+            <thead style={{ paddingBottom: 30 }}>
+              <th
                 style={{
                   paddingRight: 40,
-                  color: constants.colors.primary1,
-                  fontWeight: "500",
+                  fontSize: 14,
+                  color: "rgba(159, 135, 114, 1)",
+                  fontWeight: "600",
+                  paddingBottom: 10,
                 }}
               >
-                {user.stateOfOrigin}
-              </td>
-              <td
+                STATE OF ORIGIN
+              </th>
+              <th
                 style={{
                   paddingRight: 20,
-                  color: constants.colors.primary1,
-                  fontWeight: "500",
+                  fontSize: 14,
+                  color: "rgba(159, 135, 114, 1)",
+                  fontWeight: "600",
+                  paddingBottom: 10,
                 }}
               >
-                {user.LGA}
-              </td>
-              <td
+                LGA
+              </th>
+              <th
                 style={{
                   paddingRight: 20,
-                  color: constants.colors.primary1,
-                  fontWeight: "500",
+                  fontSize: 14,
+                  color: "rgba(159, 135, 114, 1)",
+                  fontWeight: "600",
+                  paddingBottom: 10,
                 }}
               >
-                {user.schoolAttended || "Nil"}
-              </td>
-              <td
-                style={{ color: constants.colors.primary1, fontWeight: "500" }}
+                SCHOOL ATTENDED
+              </th>
+              <th
+                style={{
+                  fontSize: 14,
+                  color: "rgba(159, 135, 114, 1)",
+                  fontWeight: "600",
+                  paddingBottom: 10,
+                }}
               >
-                {user.age}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                AGE
+              </th>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={{
+                    paddingRight: 40,
+                    color: constants.colors.primary1,
+                    fontWeight: "500",
+                  }}
+                >
+                  {user.stateOfOrigin}
+                </td>
+                <td
+                  style={{
+                    paddingRight: 20,
+                    color: constants.colors.primary1,
+                    fontWeight: "500",
+                  }}
+                >
+                  {user.LGA}
+                </td>
+                <td
+                  style={{
+                    paddingRight: 20,
+                    color: constants.colors.primary1,
+                    fontWeight: "500",
+                  }}
+                >
+                  {user.schoolAttended || "Nil"}
+                </td>
+                <td
+                  style={{
+                    color: constants.colors.primary1,
+                    fontWeight: "500",
+                  }}
+                >
+                  {user.age}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 const VotingSuccessModal = ({ setVisible }) => {
@@ -300,54 +305,15 @@ export default function Contestants({ contestants = [], error }) {
   //     }
 
   // }, [])
+  const category = [
+    { item: "Dashboard", img: "user", route: "dashboard" },
+    { item: "Transactions", img: "menu", route: "all-transactions" },
+    { item: "Settings", img: "settings", route: "settings" },
+  ];
+  const [active, setActive] = useState("Dashboard");
 
   return (
     <>
-      <header
-        style={{
-          backgroundColor: "rgba(238, 219, 201, 1)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-        className={styles.header}
-      >
-        <div>
-          <Link href="/">
-            <img src="./images/logo-big.png" style={{ cursor: "pointer" }} />
-          </Link>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          {false && (
-            <>
-              {" "}
-              <form>
-                <input
-                  style={{
-                    padding: 10,
-                    backgroundColor: "transparent",
-                    border: "none",
-                    fontStyle: "italic",
-                  }}
-                  className={styles.searchBar}
-                  placeholder="Search by contestant name"
-                />
-              </form>
-            </>
-          )}
-          <img
-            onClick={() => setSearchOpen(!searchOpen)}
-            src="./images/search.png"
-            style={{ cursor: "pointer" }}
-          />
-        </div>
-      </header>
       <main
         style={{
           display: "flex",
@@ -647,4 +613,4 @@ const Contestant = ({ contestant, setSelectedUser }) => {
   );
 };
 
-Contestants.layout = "profile";
+Contestants.layout = "admin";

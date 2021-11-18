@@ -99,60 +99,23 @@ export default function Dashboard({ data = {}, error }) {
           )
     );
   }, [searchTerm]);
+  const category = [
+    { item: "Dashboard", img: "user", route: "dashboard" },
+    { item: "Transactions", img: "menu", route: "all-transactions" },
+    { item: "Contestants", img: "settings", route: "all-contestants" },
+  ];
+  const [active, setActive] = useState("Dashboard");
 
   return (
     <>
-      <header
-        style={{
-          backgroundColor: "rgba(238, 219, 201, 1)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-        className={styles.header}
-      >
-        <div>
-          <Link href="/">
-            <img src="./images/logo-big.png" style={{ cursor: "pointer" }} />
-          </Link>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          {false && (
-            <>
-              {" "}
-              <form>
-                <input
-                  style={{
-                    padding: 10,
-                    backgroundColor: "transparent",
-                    border: "none",
-                    fontStyle: "italic",
-                  }}
-                  className={styles.searchBar}
-                  placeholder="Search by contestant name"
-                />
-              </form>
-            </>
-          )}
-          <img
-            onClick={() => setSearchOpen(!searchOpen)}
-            src="./images/search.png"
-            style={{ cursor: "pointer" }}
-          />
-        </div>
-      </header>
       <main
         style={{
           display: "flex",
           minHeight: "100vh",
           justifyContent: "center",
           backgroundColor: "rgba(255, 253, 251, 1)",
+          marginLeft: 80,
+          marginRight: 80,
         }}
       >
         <div style={{ paddingTop: 40 }}>
@@ -431,4 +394,4 @@ const Contestant = ({ contestant, setSelectedUser }) => {
   );
 };
 
-Dashboard.layout = "dashboard";
+Dashboard.layout = "admin";
